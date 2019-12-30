@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:sellit_mobileapp/routes/routelinks.dart';
 
 class Login extends StatefulWidget {
   Login({Key key}) : super(key: key);
@@ -131,7 +132,9 @@ class _LoginState extends State<Login> {
                           child: Material(
                             color: Colors.transparent,
                             child: InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                Navigator.pushNamed(context, ExploreRoute);
+                              },
                               child: Center(
                                 child: Text("SIGNIN",
                                     style: TextStyle(
