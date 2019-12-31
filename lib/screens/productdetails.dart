@@ -1,6 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 class ProductDetails extends StatefulWidget {
   ProductDetails({Key key}) : super(key: key);
@@ -25,11 +27,11 @@ class _ProductDetailsState extends State<ProductDetails> {
                 thickness: 3.0,
               ),
               _moreDetails(),
-             Divider(
+              Divider(
                 thickness: 3.0,
               ),
               _productDescription(),
-                           Divider(
+              Divider(
                 thickness: 3.0,
               ),
               _sellerDescription()
@@ -48,7 +50,8 @@ class _ProductDetailsState extends State<ProductDetails> {
           child: Carousel(
             boxFit: BoxFit.cover,
             images: [
-              AssetImage("assets/images/cookiemint.jpg"),
+              NetworkImage("https://cdn-images-1.medium.com/max/2000/1*GqdzzfB_BHorv7V2NV7Jgg.jpeg"),
+              NetworkImage("https://i.ibb.co/Dg0xRJz/gopro1.jpg"),
               AssetImage("assets/images/cookiemint.jpg"),
               AssetImage("assets/images/cookiemint.jpg"),
               AssetImage("assets/images/cookiemint.jpg")
@@ -58,8 +61,8 @@ class _ProductDetailsState extends State<ProductDetails> {
           ),
         ),
         Positioned(
-          child: AppBar(          
-           //automaticallyImplyLeading: true,
+          child: AppBar(
+            //automaticallyImplyLeading: true,
             iconTheme: IconThemeData(color: Colors.black),
             backgroundColor: Colors.transparent,
             leading: new IconButton(
@@ -114,51 +117,65 @@ class _ProductDetailsState extends State<ProductDetails> {
     );
   }
 
-  Widget _moreDetails(){
+  Widget _moreDetails() {
     return ListTile(
-      title: Text("Product Details" , style: Theme.of(context).textTheme.subtitle,),
-      subtitle: Text("Sed ut perspiciatis unde omnis iste natus error sit voluptatem" 
-      "accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo "
-      "inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo."
-      "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit,"
-      "sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt."
-       "Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur",
-       style: Theme.of(context).textTheme.body1,
-       softWrap: true,
-       textAlign: TextAlign.justify,),
+      title: Text(
+        "Product Details",
+        style: Theme.of(context).textTheme.subtitle,
+      ),
+      subtitle: Text(
+        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem"
+        "accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo "
+        "inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo."
+        "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit,"
+        "sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt."
+        "Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur",
+        style: Theme.of(context).textTheme.body1,
+        softWrap: true,
+        textAlign: TextAlign.justify,
+      ),
     );
   }
 
-  Widget _productDescription(){
+  Widget _productDescription() {
     return ListTile(
-      title: Text("Product Description" , style: Theme.of(context).textTheme.subtitle,),
-      subtitle: Text("Sed ut perspiciatis unde omnis iste natus error sit voluptatem" 
-      "accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo "
-      "inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo."
-      "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit,"
-      "sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt."
-       "Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur",
-       style: Theme.of(context).textTheme.body1,
-       softWrap: true,
-       textAlign: TextAlign.justify,),
+      title: Text(
+        "Product Description",
+        style: Theme.of(context).textTheme.subtitle,
+      ),
+      subtitle: Text(
+        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem"
+        "accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo "
+        "inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo."
+        "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit,"
+        "sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt."
+        "Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur",
+        style: Theme.of(context).textTheme.body1,
+        softWrap: true,
+        textAlign: TextAlign.justify,
+      ),
     );
   }
 
-   Widget _sellerDescription(){
+  Widget _sellerDescription() {
     return ListTile(
       leading: CircleAvatar(
         radius: 30,
         child: Text("MB"),
       ),
       trailing: Icon(Icons.arrow_forward_ios),
-      title: Text("Marquise Barrows" , style: Theme.of(context).textTheme.subtitle,),
-      subtitle: Text("Member since Dec 2017",
-       style: Theme.of(context).textTheme.body1,
-       softWrap: true,
-       textAlign: TextAlign.justify,),
+      title: Text(
+        "Marquise Barrows",
+        style: Theme.of(context).textTheme.subtitle,
+      ),
+      subtitle: Text(
+        "Member since Dec 2017",
+        style: Theme.of(context).textTheme.body1,
+        softWrap: true,
+        textAlign: TextAlign.justify,
+      ),
     );
   }
-
 
   MaterialButton _materialButton() {
     return MaterialButton(
