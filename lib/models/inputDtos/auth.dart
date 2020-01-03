@@ -4,11 +4,11 @@ part 'auth.g.dart';
 
 @JsonSerializable()
 class Auth {
-  String matrikel_number;
+  String matrikelnumber;
   String password;
 
   Auth(
-    {this.matrikel_number,
+    {this.matrikelnumber,
     this.password,
     }
   );

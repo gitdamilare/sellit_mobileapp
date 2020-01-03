@@ -8,18 +8,18 @@ part of 'product.dart';
 
 Product _$ProductFromJson(Map<String, dynamic> json) {
   return Product(
-    product_id: json['product_id'] as int,
+    productid: json['product_id'] as int,
     name: json['name'] as String,
     slug: json['slug'] as String,
     description: json['description'] as String,
     price: json['price'] as String,
-    seller_id: json['seller_id'] as int,
-    more_details: json['more_details'] as String,
+    sellerid: json['seller_id'] as int,
+    moredetails: json['more_details'] as String,
     status: json['status'] as int,
-    category_id: json['category_id'] as int,
-    brand_id: json['brand_id'] as int,
-    product_condition: json['product_condition'] as int,
-    images: (json['images'] as List)
+    categoryid: json['category_id'] as int,
+    brandid: json['brand_id'] as int,
+    productcondition: json['product_condition'] as int,
+    images: (json['image'] as List)
         ?.map(
             (e) => e == null ? null : Image.fromJson(e as Map<String, dynamic>))
         ?.toList(),
@@ -27,16 +27,16 @@ Product _$ProductFromJson(Map<String, dynamic> json) {
 }
 
 Map<String, dynamic> _$ProductToJson(Product instance) => <String, dynamic>{
-      'product_id': instance.product_id,
+      'product_id': instance.productid,
       'name': instance.name,
       'slug': instance.slug,
       'description': instance.description,
       'price': instance.price,
-      'seller_id': instance.seller_id,
-      'more_details': instance.more_details,
+      'seller_id': instance.sellerid,
+      'more_details': instance.moredetails,
       'status': instance.status,
-      'category_id': instance.category_id,
-      'brand_id': instance.brand_id,
-      'product_condition': instance.product_condition,
-      'images': instance.images?.map((e) => e?.toJson())?.toList(),
+      'category_id': instance.categoryid,
+      'brand_id': instance.brandid,
+      'product_condition': instance.productcondition,
+      'image': instance.images?.map((e) => e?.toJson())?.toList(),
     };
