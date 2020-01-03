@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter/rendering.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:sellit_mobileapp/models/image.dart';
+import 'package:sellit_mobileapp/models/user.dart';
 
 part 'product.g.dart';
 
@@ -19,6 +19,7 @@ class Product extends Equatable {
   final int brandid;
   final int productcondition;
   final List<Image> images;
+  final User sellerinfo;
 
   Product(
       {this.productid,
@@ -32,7 +33,8 @@ class Product extends Equatable {
       this.categoryid,
       this.brandid,
       this.productcondition,
-      this.images});
+      this.images,
+      this.sellerinfo});
 
   factory Product.fromJson(Map<String, dynamic> json) =>
       _$ProductFromJson(json);
@@ -52,7 +54,8 @@ class Product extends Equatable {
         categoryid,
         brandid,
         productcondition,
-        images
+        images,
+        sellerinfo
       ];
 
   @override

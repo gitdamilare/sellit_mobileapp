@@ -23,6 +23,9 @@ Product _$ProductFromJson(Map<String, dynamic> json) {
         ?.map(
             (e) => e == null ? null : Image.fromJson(e as Map<String, dynamic>))
         ?.toList(),
+    sellerinfo: json['seller_info'] == null
+        ? null
+        : User.fromJson(json['seller_info'] as Map<String, dynamic>),
   );
 }
 
@@ -39,4 +42,5 @@ Map<String, dynamic> _$ProductToJson(Product instance) => <String, dynamic>{
       'brand_id': instance.brandid,
       'product_condition': instance.productcondition,
       'image': instance.images?.map((e) => e?.toJson())?.toList(),
+      'seller_info': instance.sellerinfo?.toJson(),
     };
