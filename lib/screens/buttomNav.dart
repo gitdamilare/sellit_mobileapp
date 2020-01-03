@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sellit_mobileapp/bloc/bloc.dart';
 import 'package:sellit_mobileapp/globalwidgets/bottomNavigator.dart';
 import 'package:sellit_mobileapp/screens/account.dart';
 import 'package:sellit_mobileapp/screens/chat.dart';
@@ -86,7 +88,8 @@ class _BottomNavWrapperState extends State<BottomNavWrapper> {
                             InkWell(
                               onTap: () {
                                 setState(() {
-                                  _myPage.jumpToPage(1);
+                                  BlocProvider.of<AuthenticationBloc>(context).add(LoggedOut());
+                                  //_myPage.jumpToPage(1);
                                 });
                               },
                               child: Column(
