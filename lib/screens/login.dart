@@ -84,7 +84,6 @@ class _LoginFormState extends State<LoginForm> {
       Auth input = Auth(
           matrikelnumber: _usernameController.text,
           password: _passwordController.text);
-      debugPrint(input.toJson().toString());
       BlocProvider.of<LoginBloc>(context)
           .add(LoginButtonPressed(authInput: input));
     }

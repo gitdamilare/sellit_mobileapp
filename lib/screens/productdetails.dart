@@ -2,16 +2,29 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:sellit_mobileapp/models/product.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class ProductDetails extends StatefulWidget {
-  ProductDetails({Key key}) : super(key: key);
+  final Product product;
+  ProductDetails({Key key, this.product}) : super(key: key);
 
   @override
   _ProductDetailsState createState() => _ProductDetailsState();
 }
 
 class _ProductDetailsState extends State<ProductDetails> {
+  Product _product;
+  List<dynamic> _images = List<dynamic>();
+  @override
+  void initState() {
+    super.initState();
+    _product = widget.product;
+    _product.images.forEach((image) {
+      _images.add(NetworkImage(image.url));
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,13 +62,7 @@ class _ProductDetailsState extends State<ProductDetails> {
           height: 250,
           child: Carousel(
             boxFit: BoxFit.cover,
-            images: [
-              NetworkImage("https://cdn-images-1.medium.com/max/2000/1*GqdzzfB_BHorv7V2NV7Jgg.jpeg"),
-              NetworkImage("https://i.ibb.co/Dg0xRJz/gopro1.jpg"),
-              AssetImage("assets/images/cookiemint.jpg"),
-              AssetImage("assets/images/cookiemint.jpg"),
-              AssetImage("assets/images/cookiemint.jpg")
-            ],
+            images: _images,
             dotSize: 5.0,
             autoplay: false,
           ),
@@ -86,11 +93,11 @@ class _ProductDetailsState extends State<ProductDetails> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(
-            "\$50,0000",
+            "€ ${_product.price}",
             style: titletextStyle,
           ),
           Text(
-            "Ford Ecosport Titanium 2014 AT Service Record Istimewas #aos",
+            _product.name,
             softWrap: true,
             style: subtextStyle,
           ),
@@ -124,12 +131,7 @@ class _ProductDetailsState extends State<ProductDetails> {
         style: Theme.of(context).textTheme.subtitle,
       ),
       subtitle: Text(
-        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem"
-        "accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo "
-        "inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo."
-        "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit,"
-        "sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt."
-        "Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur",
+        _product.description,
         style: Theme.of(context).textTheme.body1,
         softWrap: true,
         textAlign: TextAlign.justify,
@@ -144,12 +146,7 @@ class _ProductDetailsState extends State<ProductDetails> {
         style: Theme.of(context).textTheme.subtitle,
       ),
       subtitle: Text(
-        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem"
-        "accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo "
-        "inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo."
-        "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit,"
-        "sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt."
-        "Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur",
+        _product.moredetails != "" ? _product.moredetails : "",
         style: Theme.of(context).textTheme.body1,
         softWrap: true,
         textAlign: TextAlign.justify,
@@ -161,11 +158,11 @@ class _ProductDetailsState extends State<ProductDetails> {
     return ListTile(
       leading: CircleAvatar(
         radius: 30,
-        child: Text("MB"),
+        child: Text(circleAvatarTitle(_product.sellerinfo.firstname,_product.sellerinfo.lastname)),
       ),
       trailing: Icon(Icons.arrow_forward_ios),
       title: Text(
-        "Marquise Barrows",
+        "${_product.sellerinfo.firstname + " " + _product.sellerinfo.lastname}",
         style: Theme.of(context).textTheme.subtitle,
       ),
       subtitle: Text(
@@ -175,6 +172,10 @@ class _ProductDetailsState extends State<ProductDetails> {
         textAlign: TextAlign.justify,
       ),
     );
+  }
+
+  String circleAvatarTitle(String firstname, String lastname){
+      return firstname.substring(0, 1).toUpperCase() + lastname.substring(0, 1).toUpperCase();
   }
 
   MaterialButton _materialButton() {

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sellit_mobileapp/bloc/bloc.dart';
-import 'package:sellit_mobileapp/globalwidgets/bottomNavigator.dart';
 import 'package:sellit_mobileapp/screens/account.dart';
 import 'package:sellit_mobileapp/screens/chat.dart';
 import 'package:sellit_mobileapp/screens/home.dart';
@@ -18,7 +17,7 @@ class BottomNavWrapper extends StatefulWidget {
 class _BottomNavWrapperState extends State<BottomNavWrapper> {
   PageController _myPage = PageController(initialPage: 0);
   var pageOptions = [];
-  int _selectedPage = 0;
+  //int _selectedPage = 0;
 
   void initState() {
     pageOptions = [Home(), Login()];
@@ -28,7 +27,7 @@ class _BottomNavWrapperState extends State<BottomNavWrapper> {
   void onTappedBar(int index) {
     print(index);
     setState(() {
-      _selectedPage = 1;
+      //_selectedPage = 1;
     });
   }
 

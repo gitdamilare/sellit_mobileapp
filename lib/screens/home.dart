@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sellit_mobileapp/bloc/bloc.dart';
+import 'package:sellit_mobileapp/models/category.dart';
 import 'package:sellit_mobileapp/models/product.dart';
 import 'package:sellit_mobileapp/routes/routelinks.dart';
-import 'package:sellit_mobileapp/screens/productdetails.dart';
+import 'package:sellit_mobileapp/utilis/datasearch.dart';
+import 'package:sellit_mobileapp/utilis/utili.dart';
 
 class Home extends StatefulWidget {
   Home({Key key}) : super(key: key);
@@ -27,6 +28,7 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    var textStyle = Theme.of(context).textTheme.subtitle;
     return Scaffold(
       resizeToAvoidBottomInset: true,
       resizeToAvoidBottomPadding: true,
@@ -46,6 +48,12 @@ class _HomeState extends State<Home> {
                   //padding: EdgeInsets.all(2.0),
                   height: 50,
                   child: TextField(
+                    onTap: (){
+                      showSearch(
+                        context: context,
+                        delegate: DataSearch(bloccontext: context)
+                      );
+                    },
                     decoration: InputDecoration(
                         prefixIcon: Icon(Icons.search),
                         border: OutlineInputBorder(),
@@ -81,12 +89,34 @@ class _HomeState extends State<Home> {
               children: <Widget>[
                 Column(
                   children: <Widget>[
-                    _browseCatgeories(),
-                    ConstrainedBox(
-                      constraints: BoxConstraints(maxHeight: double.infinity),
-                      child: _recentProduct(state),
-                    )
-                    
+                    Container(
+                      padding: const EdgeInsets.fromLTRB(20, 30, 20, 10.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Text("Browse Categories",
+                              style: TextStyle(
+                                fontFamily: 'Varela',
+                                fontSize: 18.0,
+                              )),
+                          InkWell(
+                            onTap: () {
+                              Navigator.pushNamed(context, CategoryRoute, arguments: state.categories);
+                              debugPrint("sell");
+                            },
+                            child: Text("SELL ALL",
+                                style: TextStyle(
+                                  fontFamily: 'Varela',
+                                  fontSize: 15.0,
+                                  fontWeight: FontWeight.bold,
+                                  color:  Colors.cyan
+                                )),
+                          )
+                        ],
+                      ),
+                    ),
+                    _browseCatgeories(state.categories),
+                    _recentProduct(state)
                   ],
                 )
               ],
@@ -101,162 +131,49 @@ class _HomeState extends State<Home> {
         ));*/
   }
 
-  Widget _browseCatgeories() {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(20, 30, 20, 0.0),
-      child: Column(
-        children: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Text("Browse Categories",
-                  style: TextStyle(
-                    fontFamily: 'Varela',
-                    fontSize: 18.0,
-                  )),
-              Text("SELL ALL",
-                  style: TextStyle(
-                    fontFamily: 'Varela',
-                    fontSize: 15.0,
-                  ))
-            ],
-          ),
-          Container(
-            padding: EdgeInsets.all(20.0),
-            height: 300,
-            child: GridView.count(
-              crossAxisCount: 3,
-              primary: false,
-              crossAxisSpacing: 10.0,
-              mainAxisSpacing: 15.0,
-              childAspectRatio: 1.0,
-              children: <Widget>[
-                Column(
-                  children: <Widget>[
-                    CircleAvatar(
-                      radius: 30,
-                      child: Center(
-                          child: IconButton(
-                        onPressed: () {},
-                        icon: new Icon(FontAwesomeIcons.car),
-                        iconSize: 30,
-                      )),
-                    ),
-                    SizedBox(
-                      height: 5.0,
-                    ),
-                    Text("Mobile")
-                  ],
-                ),
-                Column(
-                  children: <Widget>[
-                    CircleAvatar(
-                      radius: 30,
-                      child: Center(
-                          child: Icon(
-                        Icons.computer,
-                        size: 35,
-                      )),
-                    ),
-                    SizedBox(
-                      height: 5.0,
-                    ),
-                    Text("Mobile")
-                  ],
-                ),
-                Column(
-                  children: <Widget>[
-                    CircleAvatar(
-                      radius: 30,
-                      child: Center(
-                          child: Icon(
-                        Icons.computer,
-                        size: 35,
-                      )),
-                    ),
-                    SizedBox(
-                      height: 5.0,
-                    ),
-                    Text("Mobile")
-                  ],
-                ),
-                Column(
-                  children: <Widget>[
-                    CircleAvatar(
-                      radius: 30,
-                      child: Center(
-                          child: Icon(
-                        Icons.computer,
-                        size: 35,
-                      )),
-                    ),
-                    SizedBox(
-                      height: 5.0,
-                    ),
-                    Text("Mobile")
-                  ],
-                ),
-                Column(
-                  children: <Widget>[
-                    CircleAvatar(
-                      radius: 30,
-                      child: Center(
-                          child: Icon(
-                        Icons.computer,
-                        size: 35,
-                      )),
-                    ),
-                    SizedBox(
-                      height: 5.0,
-                    ),
-                    Text("Mobile")
-                  ],
-                ),
-                Column(
-                  children: <Widget>[
-                    CircleAvatar(
-                      radius: 30,
-                      child: Center(
-                          child: Icon(
-                        Icons.computer,
-                        size: 35,
-                      )),
-                    ),
-                    SizedBox(
-                      height: 5.0,
-                    ),
-                    Text("Mobile")
-                  ],
-                )
-              ],
-            ),
-          ),
-        ],
+  Widget _browseCatgeories(List<Category> categories) {
+    return Container(
+      // color: Colors.amber,
+      padding: EdgeInsets.fromLTRB(20, 0.0, 20, 5.0),
+      //width: 500,
+      height: 230,
+      child: GridView.builder(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 3,
+            crossAxisSpacing: 0.0,
+            childAspectRatio: 1.0,
+            mainAxisSpacing: 0.0),
+        shrinkWrap: true,
+        itemBuilder: (BuildContext context, int i) {
+          return _categoryCard(categories[i]);
+        },
+        itemCount: categories.length,
       ),
     );
   }
 
   Widget _recentProduct(ProductLoaded state) {
     var textStyle = Theme.of(context).textTheme.subtitle;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       mainAxisSize: MainAxisSize.max,
       children: <Widget>[
         Padding(
-          padding: EdgeInsets.fromLTRB(30.0, 0.0, 15.0, 0.0),
+          padding: EdgeInsets.fromLTRB(20.0, 5.0, 15.0, 0.0),
           child: Text('Fresh Recommendations', style: textStyle),
         ),
         SizedBox(
           height: 10.0,
         ),
         Container(
-            padding: EdgeInsets.fromLTRB(5, 0.0, 5, 0.0),
+            //padding: EdgeInsets.fromLTRB(0.0, 0.0, 5, 0.0),
             width: MediaQuery.of(context).size.width - 30.0,
-            height: MediaQuery.of(context).size.height - 50.0,
+            //height: MediaQuery.of(context).size.height - 50.0,
             child: GridView.builder(
               //controller: _scrollController,
-              //physics: BouncingScrollPhysics(),
+              physics: NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
@@ -265,30 +182,25 @@ class _HomeState extends State<Home> {
                   mainAxisSpacing: 15.0),
               itemCount: state.hasReachedMax
                   ? state.products.length
-                  : state.products.length + 1,
+                  : state.products.length - 1,
               itemBuilder: (BuildContext context, int index) {
+                var product = state.products[index];
                 return index >= state.products.length
                     ? BottomLoader()
-                    : _buildCard(
-                        state.products[index].name,
-                        state.products[index].price,
-                        state.products[index].images.first.url,
-                        false,
-                        false,
-                        context);
+                    : _buildCard(false, false, context, product);
               },
             ))
       ],
     );
   }
 
-  Widget _buildCard(String name, String price, String imgPath, bool added,
-      bool isFavorite, context) {
+  Widget _buildCard(bool added, bool isFavorite, context, Product product) {
     return Padding(
         padding: EdgeInsets.only(top: 2.0, bottom: 5.0, left: 5.0, right: 5.0),
         child: InkWell(
             onTap: () {
-              Navigator.pushNamed(context, ProductDetailsRoute);
+              Navigator.pushNamed(context, ProductDetailsRoute,
+                  arguments: product);
             },
             child: Card(
                 elevation: 5.0,
@@ -296,12 +208,12 @@ class _HomeState extends State<Home> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Hero(
-                          tag: name,
+                          tag: product.productid,
                           child: Container(
                             height: 160,
                             width: 180.0,
                             child: Image.network(
-                              imgPath,
+                              product.images.first.url,
                               fit: BoxFit.cover,
                             ),
                           )),
@@ -312,13 +224,13 @@ class _HomeState extends State<Home> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          Text("€ $price",
+                          Text("€ ${product.price}",
                               textAlign: TextAlign.left,
                               style: TextStyle(
                                   color: Color(0xFFCC8053),
                                   fontFamily: 'Varela',
                                   fontSize: 15.0)),
-                          Text(name,
+                          Text(product.name,
                               softWrap: true,
                               style: TextStyle(
                                   color: Color(0xFF575E67),
@@ -327,6 +239,26 @@ class _HomeState extends State<Home> {
                         ],
                       ),
                     ]))));
+  }
+
+  Widget _categoryCard(Category input) {
+    return InkWell(
+      onTap: () {
+        Navigator.pushNamed(context, SubCategoryRoute, arguments: input);
+      },
+      child: Column(
+        children: <Widget>[
+          UtilityWidget.categoryAvatarCreator(input.name),
+          SizedBox(
+            height: 5.0,
+          ),
+          Text(
+            input.name == null ? "CAR" : input.name.toUpperCase(),
+            style: Theme.of(context).textTheme.caption,
+          )
+        ],
+      ),
+    );
   }
 
   @override
@@ -355,11 +287,16 @@ class BottomLoader extends StatelessWidget {
         child: SizedBox(
           width: 33,
           height: 33,
-          child: Center(
-            child: CircularProgressIndicator(
-              strokeWidth: 1.5,
-            ),
-          ),
+          child: GridView(
+              gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 1),
+              children: <Widget>[
+                Center(
+                  child: CircularProgressIndicator(
+                    strokeWidth: 1.5,
+                  ),
+                ),
+              ]),
         ),
       ),
     );
