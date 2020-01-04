@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sellit_mobileapp/bloc/bloc.dart';
+import 'package:sellit_mobileapp/data/categoryrepository.dart';
 import 'package:sellit_mobileapp/data/productrepository.dart';
+import 'package:sellit_mobileapp/data/searchrepository.dart';
 import 'package:sellit_mobileapp/data/userrepository.dart';
 import 'package:sellit_mobileapp/globalwidgets/loading.dart';
 import 'package:sellit_mobileapp/globalwidgets/splashpage.dart';
@@ -34,6 +36,8 @@ void main() {
   BlocSupervisor.delegate = SimpleBlocDelegate();
   final userRepository = UserServices();
   final productRepository = ProductService();
+  final categoryRepository = CategoryService();
+  final searchRepository = SearchService();
 
   runApp(MultiBlocProvider(
     providers: [
@@ -42,9 +46,12 @@ void main() {
           ..add(AppStarted());
       }),
       BlocProvider<ProductBloc>(create: (context) {
-        return ProductBloc(productRepository: productRepository )
+        return ProductBloc(productRepository: productRepository, categoryRepository: categoryRepository )
           ..add(FetchProduct());   
-      })
+      }),
+          BlocProvider<SearchBloc>(create: (context) {
+      return SearchBloc(searchRepository: searchRepository);
+    })
     ],
     child: MyApp(
       userRepository: userRepository,
