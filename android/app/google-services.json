@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "716256176667",
+    "firebase_url": "https://sellitmobile-8a137.firebaseio.com",
+    "project_id": "sellitmobile-8a137",
+    "storage_bucket": "sellitmobile-8a137.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:716256176667:android:fb8ddb9ba36bf59952a6be",
+        "android_client_info": {
+          "package_name": "com.example.sellit_mobileapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "716256176667-gk3av2jqrmf0mrbukhncpeh3thkeqf8a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCaXt6pvPDJm414svwmA3IQr8g9pmNzy6E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "716256176667-gk3av2jqrmf0mrbukhncpeh3thkeqf8a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
