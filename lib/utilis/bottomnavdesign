@@ -1,0 +1,134 @@
+      bottomNavigationBar: BottomAppBar(
+          //shape: CircularNotchedRectangle(),
+          notchMargin: 4.0,
+          color: Colors.white,
+          elevation: 9.0,
+          clipBehavior: Clip.antiAlias,
+          child: Container(
+              height: 70.0,
+              //color: Colors.white,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(25.0),
+                    topRight: Radius.circular(25.0)),
+              ),
+              child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                        color: Colors.transparent,
+                        height: 50.0,
+                        width: MediaQuery.of(context).size.width / 2 - 40.0,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: <Widget>[
+                            /*Icon(Icons.home, color: Color(0xFFEF7532))*/
+                            InkWell(
+                              onTap: () {
+                                setState(() {
+                                  _myPage.jumpToPage(0);
+                                });
+                              },
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                mainAxisSize: MainAxisSize.min,
+                                children: <Widget>[
+                                  Icon(
+                                    LineAwesomeIcons.home,
+                                    //color: Color(0xFFEF7532)
+                                    size: 35,
+                                  ),
+                                  Text(
+                                    "Explore",
+                                    style: Theme.of(context).textTheme.caption,
+                                  )
+                                ],
+                              ),
+                            ),
+                            InkWell(
+                              onTap: () {
+                                setState(() {
+                                  BlocProvider.of<AuthenticationBloc>(context)
+                                      .add(LoggedOut());
+                                  //_myPage.jumpToPage(1);
+                                });
+                              },
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                mainAxisSize: MainAxisSize.min,
+                                children: <Widget>[
+                                  Icon(
+                                    LineAwesomeIcons.comments,
+                                    color: Color(0xFF676E79),
+                                    size: 35,
+                                  ),
+                                  Text("Chats",
+                                      style:
+                                          Theme.of(context).textTheme.caption)
+                                ],
+                              ),
+                            ),
+                          ],
+                        )),
+                    /*Expanded(
+                      child: Container(
+                        height: 60.0,
+                        width: MediaQuery.of(context).size.width / 2 - 40.0,
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: <Widget>[Text("")],
+                        ),
+                      ),
+                    ),*/
+                    Container(
+                        height: 50.0,
+                        width: MediaQuery.of(context).size.width / 2 - 40.0,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: <Widget>[
+                            InkWell(
+                              onTap: () {
+                                setState(() {
+                                  _myPage.jumpToPage(2);
+                                });
+                              },
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                mainAxisSize: MainAxisSize.min,
+                                children: <Widget>[
+                                  Icon(
+                                    LineAwesomeIcons.box_open,
+                                    color: Color(0xFF676E79),
+                                    size: 35,
+                                  ),
+                                  Text("My ADS",
+                                      style:
+                                          Theme.of(context).textTheme.caption)
+                                ],
+                              ),
+                            ),
+                            InkWell(
+                              onTap: () {
+                                setState(() {
+                                  _myPage.jumpToPage(3);
+                                });
+                              },
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                mainAxisSize: MainAxisSize.min,
+                                children: <Widget>[
+                                  Icon(LineAwesomeIcons.user_1,
+                                      color: Color(0xFF676E79), size: 35),
+                                  Text("Profile",
+                                      style:
+                                          Theme.of(context).textTheme.caption)
+                                ],
+                              ),
+                            ),
+                          ],
+                        )),
+                  ]
+                )
+                  )
+                    ),
