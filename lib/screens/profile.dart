@@ -10,8 +10,25 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
-    return Center(
-       child: Text("Profile"),
+    return Scaffold(
+            appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.black),
+        title: Text(
+          "My ADS",
+          style: Theme.of(context).textTheme.body1,
+        ),
+        backgroundColor: Colors.white,
+      ),
+       body: Column(
+         children: <Widget>[
+          
+       ],),
     );
+  }
+
+  Widget _firstLayer(){
+    return Row(children: <Widget>[
+      
+    ],);
   }
 }

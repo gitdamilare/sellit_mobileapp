@@ -5,7 +5,7 @@ part 'image.g.dart';
 
 @JsonSerializable()
 class Image extends Equatable{
-  final String url;
+  String url;
 
   Image({this.url});
 

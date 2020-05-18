@@ -19,12 +19,18 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
      yield LoginLoading();
      try{
        final result = await userRepository.authenticate(event.authInput);
-       if(result.status == "failed"){
+       if(result.status == "sucessfull" && result.token != null){
+        authenticationBloc.add(LoggedIn(authOutputDto: result));
+         yield LoginInitialState();
+       }else{
+         yield LoginFailure(error : "Username and Password does not match");
+       }
+       /*if(result.status == "failed"){
          yield LoginFailure(error : "Invalid Username or Password");
        }else{
          authenticationBloc.add(LoggedIn(authOutputDto: result));
          yield LoginInitialState();
-       }    
+       } */
      }catch(e){
        yield LoginFailure(error: e.toString());
      }

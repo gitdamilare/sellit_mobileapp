@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:bloc/bloc.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sellit_mobileapp/bloc/bloc.dart';
 import 'package:sellit_mobileapp/data/categoryrepository.dart';
@@ -11,6 +12,8 @@ import 'package:sellit_mobileapp/globalwidgets/splashpage.dart';
 import 'package:sellit_mobileapp/routes/router.dart';
 import 'package:sellit_mobileapp/screens/buttomNav.dart';
 import 'package:sellit_mobileapp/screens/login.dart';
+import 'package:sellit_mobileapp/services/coredata.dart';
+import 'package:sellit_mobileapp/utilis/utili.dart';
 
 class SimpleBlocDelegate extends BlocDelegate {
   @override
@@ -46,12 +49,14 @@ void main() {
           ..add(AppStarted());
       }),
       BlocProvider<ProductBloc>(create: (context) {
-        return ProductBloc(productRepository: productRepository, categoryRepository: categoryRepository )
-          ..add(FetchProduct());   
+        return ProductBloc(
+            productRepository: productRepository,
+            categoryRepository: categoryRepository)
+          ..add(FetchProduct());
       }),
-          BlocProvider<SearchBloc>(create: (context) {
-      return SearchBloc(searchRepository: searchRepository);
-    })
+      BlocProvider<SearchBloc>(create: (context) {
+        return SearchBloc(searchRepository: searchRepository);
+      })
     ],
     child: MyApp(
       userRepository: userRepository,
@@ -64,11 +69,15 @@ class MyApp extends StatelessWidget {
   MyApp({Key key, @required this.userRepository}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(statusBarColor: UtilityWidget.white, systemNavigationBarColor: Color(0xFF48AC98)));
     return MaterialApp(
         title: 'Flutter Demo',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-            primarySwatch: Colors.deepPurple,
+            primarySwatch: UtilityWidget.white,
+            primaryColor: UtilityWidget.white,
+            accentColor: Color(0xFF48AC98),
             textTheme: TextTheme(
                 title: TextStyle(
                     fontSize: 22.5,

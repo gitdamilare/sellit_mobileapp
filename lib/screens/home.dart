@@ -4,6 +4,7 @@ import 'package:sellit_mobileapp/bloc/bloc.dart';
 import 'package:sellit_mobileapp/models/category.dart';
 import 'package:sellit_mobileapp/models/product.dart';
 import 'package:sellit_mobileapp/routes/routelinks.dart';
+import 'package:sellit_mobileapp/services/coredata.dart';
 import 'package:sellit_mobileapp/utilis/datasearch.dart';
 import 'package:sellit_mobileapp/utilis/utili.dart';
 
@@ -29,12 +30,16 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     var textStyle = Theme.of(context).textTheme.subtitle;
+    final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
+        new GlobalKey<RefreshIndicatorState>();
+            final GlobalKey<RefreshIndicatorState> _refreshIndicatorKeyPost =
+        new GlobalKey<RefreshIndicatorState>();
     return Scaffold(
       resizeToAvoidBottomInset: true,
       resizeToAvoidBottomPadding: true,
       appBar: AppBar(
         elevation: 5.0,
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).canvasColor,
         automaticallyImplyLeading: false,
         title: Theme(
           data: ThemeData(primaryColor: Colors.white),
@@ -48,11 +53,10 @@ class _HomeState extends State<Home> {
                   //padding: EdgeInsets.all(2.0),
                   height: 50,
                   child: TextField(
-                    onTap: (){
+                    onTap: () {
                       showSearch(
-                        context: context,
-                        delegate: DataSearch(bloccontext: context)
-                      );
+                          context: context,
+                          delegate: DataSearch(bloccontext: context));
                     },
                     decoration: InputDecoration(
                         prefixIcon: Icon(Icons.search),
@@ -78,48 +82,56 @@ class _HomeState extends State<Home> {
               child: Text('failed to fetch posts'),
             );
           }
-          if (state is ProductLoaded) {
-            if (state.products.isEmpty) {
-              return Center(
-                child: Text("no posts"),
+          if (state is ProductLoaded) {          
+            if (state.products.isEmpty || state.categories.isEmpty) {
+              return RefreshIndicator(
+               key: _refreshIndicatorKeyPost,
+                onRefresh: _refreshProduct,
+                child: Center(
+                  child: Text("no posts"),
+                ),
               );
             }
-            return ListView(
-              controller: _scrollController,
-              children: <Widget>[
-                Column(
-                  children: <Widget>[
-                    Container(
-                      padding: const EdgeInsets.fromLTRB(20, 30, 20, 10.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Text("Browse Categories",
-                              style: TextStyle(
-                                fontFamily: 'Varela',
-                                fontSize: 18.0,
-                              )),
-                          InkWell(
-                            onTap: () {
-                              Navigator.pushNamed(context, CategoryRoute, arguments: state.categories);
-                              debugPrint("sell");
-                            },
-                            child: Text("SELL ALL",
+            CoreData.coreDataObject.appCategories = state.categories;
+            return RefreshIndicator(
+              key: _refreshIndicatorKey,
+              onRefresh: _refreshProduct,
+              child: ListView(
+                controller: _scrollController,
+                children: <Widget>[
+                  Column(
+                    children: <Widget>[
+                      Container(
+                        padding: const EdgeInsets.fromLTRB(20, 30, 20, 10.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Text("Browse Categories",
                                 style: TextStyle(
                                   fontFamily: 'Varela',
-                                  fontSize: 15.0,
-                                  fontWeight: FontWeight.bold,
-                                  color:  Colors.cyan
+                                  fontSize: 18.0,
                                 )),
-                          )
-                        ],
+                            InkWell(
+                              onTap: () {
+                                Navigator.pushNamed(context, CategoryRoute,
+                                    arguments: state.categories);
+                              },
+                              child: Text("SEE ALL",
+                                  style: TextStyle(
+                                      fontFamily: 'Varela',
+                                      fontSize: 15.0,
+                                      fontWeight: FontWeight.bold,
+                                      color: Theme.of(context).accentColor)),
+                            )
+                          ],
+                        ),
                       ),
-                    ),
-                    _browseCatgeories(state.categories),
-                    _recentProduct(state)
-                  ],
-                )
-              ],
+                      _browseCatgeories(state.categories),
+                      _recentProduct(state)
+                    ],
+                  )
+                ],
+              ),
             );
           }
         },
@@ -224,18 +236,18 @@ class _HomeState extends State<Home> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          Text("€ ${product.price}",
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                  color: Color(0xFFCC8053),
-                                  fontFamily: 'Varela',
-                                  fontSize: 15.0)),
                           Text(product.name,
                               softWrap: true,
                               style: TextStyle(
                                   color: Color(0xFF575E67),
                                   fontFamily: 'Varela',
                                   fontSize: 14.0)),
+                          Text("€ ${product.price}",
+                              textAlign: TextAlign.left,
+                              style: TextStyle(
+                                  color: Color(0xFFCC8053),
+                                  fontFamily: 'Varela',
+                                  fontSize: 15.0)),
                         ],
                       ),
                     ]))));
@@ -275,6 +287,10 @@ class _HomeState extends State<Home> {
       _productBloc.add(FetchProduct());
     }
     // debugPrint((maxScroll - currentScroll).toString());
+  }
+
+  Future<void> _refreshProduct() async {
+    _productBloc.add(FetchProduct());
   }
 }
 

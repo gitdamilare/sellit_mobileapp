@@ -3,6 +3,7 @@ import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
 //import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sellit_mobileapp/models/product.dart';
+import 'package:sellit_mobileapp/utilis/utili.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class ProductDetails extends StatefulWidget {
@@ -28,7 +29,7 @@ class _ProductDetailsState extends State<ProductDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: _materialButton(),
+      bottomNavigationBar: UtilityWidget.materialButton(context,"Chat"),
       body: ListView(
         children: <Widget>[
           Column(
@@ -73,7 +74,7 @@ class _ProductDetailsState extends State<ProductDetails> {
             iconTheme: IconThemeData(color: Colors.black),
             backgroundColor: Colors.transparent,
             leading: new IconButton(
-              icon: new Icon(Icons.arrow_back_ios, color: Colors.black),
+              icon: new Icon(Icons.arrow_back_ios, color: Colors.white),
               onPressed: () => Navigator.of(context).pop(),
             ),
             elevation: 0,
@@ -158,7 +159,8 @@ class _ProductDetailsState extends State<ProductDetails> {
     return ListTile(
       leading: CircleAvatar(
         radius: 30,
-        child: Text(circleAvatarTitle(_product.sellerinfo.firstname,_product.sellerinfo.lastname)),
+        child: Text(circleAvatarTitle(
+            _product.sellerinfo.firstname, _product.sellerinfo.lastname)),
       ),
       trailing: Icon(Icons.arrow_forward_ios),
       title: Text(
@@ -174,24 +176,9 @@ class _ProductDetailsState extends State<ProductDetails> {
     );
   }
 
-  String circleAvatarTitle(String firstname, String lastname){
-      return firstname.substring(0, 1).toUpperCase() + lastname.substring(0, 1).toUpperCase();
+  String circleAvatarTitle(String firstname, String lastname) {
+    return firstname.substring(0, 1).toUpperCase() +
+        lastname.substring(0, 1).toUpperCase();
   }
 
-  MaterialButton _materialButton() {
-    return MaterialButton(
-      height: 50.0,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(1.0)),
-      child: Text(
-        "Chat",
-        textScaleFactor: 1.5,
-        style: TextStyle(
-          color: Colors.white,
-        ),
-      ),
-      color: Theme.of(context).primaryColor,
-      elevation: 2.0,
-      onPressed: () {},
-    );
-  }
 }
