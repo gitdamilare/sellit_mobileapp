@@ -406,7 +406,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                 padding: const EdgeInsets.only(left: 8.0),
                 child: Text(
                   product.name,
-                  maxLines: 2,
+                  maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                       fontFamily: 'Montserrat',
@@ -441,10 +441,11 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     //VisionText visionText = await recognizeText.processImage(ourImage);
     final List<ImageLabel> labels = await labeler.processImage(ourImage);
     if (labels.isNotEmpty) result = labels.first.text;
-
+    
     setState(() {
       searchQuery = result;
       searchQuery = UtilityWidget.getSearchText(searchQuery);
+      if(Platform.isIOS) searchQuery = "Phone";
       _searchBloc.add(SearchProduct(productname: searchQuery));
       showModal();
     });
@@ -494,18 +495,17 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
         child: Column(
           children: <Widget>[
             Align(
-              alignment: Alignment.topCenter,
-              child: Container(
+                alignment: Alignment.topCenter,
+                child: Container(
                   width: 70.0,
                   height: 70.0,
                   decoration: new BoxDecoration(
                       shape: BoxShape.circle,
                       image: new DecorationImage(
-                          fit: BoxFit.cover,
-                          image: FileImage(pickedImage))),
-            )),
+                          fit: BoxFit.cover, image: FileImage(pickedImage))),
+                )),
             Expanded(
-                          child: BlocBuilder<SearchBloc, SearchState>(
+              child: BlocBuilder<SearchBloc, SearchState>(
                 builder: (context, state) {
                   if (state is SearchLoading) {
                     return Column(

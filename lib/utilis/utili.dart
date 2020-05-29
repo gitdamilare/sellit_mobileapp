@@ -197,7 +197,7 @@ class UtilityWidget {
 
   static Text _productStatusText(String text, Color textColor) {
     return Text(
-      text,
+      text.toUpperCase(),
       style: TextStyle(
           fontFamily: 'Montserrat',
           fontWeight: FontWeight.w400,
@@ -213,6 +213,7 @@ class UtilityWidget {
     if(text == "vehicle") result = "Car";
     if(text == "mobile phone") result = "Phone";
     if(text == "computer") result = "Phone";
+        
 
     return result;
   }
