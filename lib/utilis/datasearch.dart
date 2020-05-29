@@ -72,16 +72,19 @@ class DataSearch extends SearchDelegate {
               } else {
                 var results = state.searchresult;
                 return Expanded(
-                                  child: ListView.builder(
+                  child: ListView.builder(
                     itemCount: results.length,
                     itemBuilder: (BuildContext context, int index) {
                       var result = results[index];
                       return ListTile(
-                        contentPadding:
-                            EdgeInsets.symmetric(horizontal: 15.0, vertical: 8.0),
+                        contentPadding: EdgeInsets.symmetric(
+                            horizontal: 15.0, vertical: 8.0),
                         leading: Container(
                           padding: EdgeInsets.only(right: 8.0),
-                          child: Image.network(result.images.first.url , fit: BoxFit.contain,),
+                          child: Image.network(
+                            result.images.first.url,
+                            fit: BoxFit.contain,
+                          ),
                         ),
                         title: Text(
                           result.name,
@@ -89,7 +92,8 @@ class DataSearch extends SearchDelegate {
                               fontSize: 22.0, fontWeight: FontWeight.w500),
                         ), //_trailing(_data,context),
                         onTap: () {
-                          Navigator.pushNamed(context, ProductDetailsRoute, arguments: result);
+                          Navigator.pushNamed(context, ProductDetailsRoute,
+                              arguments: result);
                           //_navigationLogic(category, context);
                         },
                       );

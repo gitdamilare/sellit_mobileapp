@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sellit_mobileapp/models/user.dart';
 import 'package:sellit_mobileapp/services/coredata.dart';
+import 'package:sellit_mobileapp/services/jsonrepo.dart';
 
 class Account extends StatefulWidget {
   Account({Key key}) : super(key: key);
@@ -22,33 +23,33 @@ class _AccountState extends State<Account> {
     return Scaffold(
       body: SafeArea(
         child: CustomScrollView(
-                  slivers: <Widget>[
-                    SliverAppBar(
+          slivers: <Widget>[
+            SliverAppBar(
                 brightness: Brightness.light,
                 backgroundColor: Theme.of(context).canvasColor,
                 title: Text("My Account")),
             SliverList(
                 delegate: SliverChildListDelegate([
-                                 Padding(
-            padding: const EdgeInsets.fromLTRB(15.0, 3.5, 15.0, 0.0),
-            child: SingleChildScrollView(
-              child: ListBody(mainAxis: Axis.vertical,
-              children: <Widget>[
-                _nameLayer(),
-                SizedBox(
-                  height: 25.0,
-                ),
-                _cardLayer(),
-                SizedBox(
-                  height: 30.0,
-                ),
-                _manage()
-              ],
-            ), )
-          ),
+              Padding(
+                  padding: const EdgeInsets.fromLTRB(15.0, 3.5, 15.0, 0.0),
+                  child: SingleChildScrollView(
+                    child: ListBody(
+                      mainAxis: Axis.vertical,
+                      children: <Widget>[
+                        _nameLayer(),
+                        SizedBox(
+                          height: 25.0,
+                        ),
+                        _cardLayer(),
+                        SizedBox(
+                          height: 30.0,
+                        ),
+                        _manage()
+                      ],
+                    ),
+                  )),
             ])),
-                  ], 
-   
+          ],
         ),
       ),
     );
@@ -60,7 +61,11 @@ class _AccountState extends State<Account> {
       children: <Widget>[
         Text(
           account.firstname,
-          //"Oluwadamilare",
+          style: Theme.of(context).textTheme.title,
+          textScaleFactor: 1.5,
+        ),
+        Text(
+          account.lastname,
           style: Theme.of(context).textTheme.title,
           textScaleFactor: 1.5,
         ),
@@ -75,7 +80,7 @@ class _AccountState extends State<Account> {
   Widget _cardLayer() {
     return Container(
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(50.0)),
-      height: 115,
+      height: 145,
       width: 100,
       child: Card(
         borderOnForeground: true,
@@ -93,20 +98,22 @@ class _AccountState extends State<Account> {
                   Icon(
                     Icons.account_balance,
                   ),
-                  SizedBox(width: 50,),
+                  SizedBox(
+                    width: 50,
+                  ),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
                         "ADDRESS",
-                        style: Theme.of(context).textTheme.caption,
+                        style:  TextStyle(fontWeight: FontWeight.bold, fontSize: 13.0),
                       ),
                       SizedBox(
                         height: 5.0,
                       ),
                       Text(
-                         account.address,
+                        account.address,
                         //"Am Kindelsfeld 3, Fulda Hessen 36039",
                         maxLines: 2,
                         style: Theme.of(context).textTheme.caption,
@@ -121,14 +128,16 @@ class _AccountState extends State<Account> {
                   Icon(
                     Icons.phone_iphone,
                   ),
-                  SizedBox(width: 50,),
+                  SizedBox(
+                    width: 50,
+                  ),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
                         "PHONE NO",
-                        style: Theme.of(context).textTheme.caption,
+                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13.0),
                       ),
                       SizedBox(
                         height: 5.0,
@@ -194,8 +203,4 @@ class _AccountState extends State<Account> {
       subtitle: Text(subtile),
     );
   }
-
-
-
-
 }

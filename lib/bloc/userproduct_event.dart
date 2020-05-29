@@ -1,16 +1,10 @@
 import 'package:equatable/equatable.dart';
 
-abstract class ProductEvent extends Equatable {
-  const ProductEvent();
-
-  @override
-  List<Object> get props => [];
+abstract class UserproductEvent extends Equatable {
+  const UserproductEvent();
 }
 
-class FetchProduct extends ProductEvent{}
-
-
-/*class FetchUserProduct extends ProductEvent{
+class FetchUserProduct extends UserproductEvent{
    final int userId;
 
   const FetchUserProduct({this.userId});
@@ -20,4 +14,4 @@ class FetchProduct extends ProductEvent{}
 
   @override
   String toString() => 'UserID { user: $userId }';
-}*/
+}

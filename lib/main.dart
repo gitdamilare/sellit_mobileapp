@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:path/path.dart';
 import 'package:sellit_mobileapp/bloc/bloc.dart';
 import 'package:sellit_mobileapp/data/categoryrepository.dart';
 import 'package:sellit_mobileapp/data/productrepository.dart';
@@ -56,7 +57,10 @@ void main() {
       }),
       BlocProvider<SearchBloc>(create: (context) {
         return SearchBloc(searchRepository: searchRepository);
-      })
+      }),
+      BlocProvider<UserproductBloc>(create: (context){
+        return UserproductBloc(productRepository: productRepository);
+      },)
     ],
     child: MyApp(
       userRepository: userRepository,

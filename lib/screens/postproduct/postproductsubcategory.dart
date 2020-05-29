@@ -3,15 +3,15 @@ import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:sellit_mobileapp/models/category.dart';
 import 'package:sellit_mobileapp/routes/routelinks.dart';
 
-class ProductSubCategory extends StatefulWidget {
+class PostProductSubCategory extends StatefulWidget {
  //ProductSubCategory({Key key, Category data}) : super(key: key);
   final Category data;
-  ProductSubCategory({this.data});
+  PostProductSubCategory({this.data});
   @override
-  _ProductSubCategoryState createState() => _ProductSubCategoryState();
+  _PostProductSubCategoryState createState() => _PostProductSubCategoryState();
 }
 
-class _ProductSubCategoryState extends State<ProductSubCategory> {
+class _PostProductSubCategoryState extends State<PostProductSubCategory> {
   Category _category = Category();
   @override
   void initState() {
@@ -46,7 +46,7 @@ class _ProductSubCategoryState extends State<ProductSubCategory> {
         children: <Widget>[
           ListTile(
             title: Text(category.name),
-            onTap: () => Navigator.of(context).pushNamed(PostFormRoute),
+            onTap: () => Navigator.of(context).pushNamed(PostFormRoute,arguments: category),
           ),
           Divider(thickness: 1.0,)
         ],

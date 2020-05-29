@@ -13,3 +13,6 @@ export 'category_state.dart';
 export 'search_bloc.dart';
 export 'search_event.dart';
 export 'search_state.dart';
+export 'userproduct_bloc.dart';
+export 'userproduct_event.dart';
+export 'userproduct_state.dart';

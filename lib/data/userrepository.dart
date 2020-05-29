@@ -37,7 +37,7 @@ final storage = new FlutterSecureStorage();
         result = AuthOutputDto.fromJson(output);
 
         //Save the Logged User Info
-        CoreData.coreDataObject.userInfo = result.userinfo;
+       // await JsonRepo.jsonRepoObject.writeAccountDataToJson(result);
      }
     } catch (e) {
       debugPrint(e);
@@ -67,7 +67,9 @@ final storage = new FlutterSecureStorage();
     await storage.write(key: "token", value: input.token);
     Root.rootObject.rootPath = await Root.rootObject.getRootPath();
     Root.rootObject.localPath = await Root.rootObject.localFile();
-    Root.rootObject.localPath =
-        await JsonRepo.jsonRepoObject.writeAccountDataToJson(input);
+    Root.rootObject.localPath = await JsonRepo.jsonRepoObject.writeAccountDataToJson(input);
+    
+    //Save Data For First Login
+    CoreData.coreDataObject.userInfo = input.userinfo;
   }
 }

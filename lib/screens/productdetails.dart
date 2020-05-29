@@ -3,6 +3,7 @@ import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
 //import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sellit_mobileapp/models/product.dart';
+import 'package:sellit_mobileapp/utilis/urlLinks.dart';
 import 'package:sellit_mobileapp/utilis/utili.dart';
 import 'package:transparent_image/transparent_image.dart';
 
@@ -21,9 +22,16 @@ class _ProductDetailsState extends State<ProductDetails> {
   void initState() {
     super.initState();
     _product = widget.product;
-    _product.images.forEach((image) {
+    if(_product.images.isNotEmpty){
+          _product.images.forEach((image) {
       _images.add(NetworkImage(image.url));
     });
+    }else{
+     _images.add(NetworkImage(NoImageURL));
+    }
+
+
+
   }
 
   @override
@@ -48,7 +56,7 @@ class _ProductDetailsState extends State<ProductDetails> {
               Divider(
                 thickness: 3.0,
               ),
-              _sellerDescription()
+             _product.sellerinfo != null ? _sellerDescription() : Container(height: 1.0,)
             ],
           ),
         ],
@@ -59,13 +67,16 @@ class _ProductDetailsState extends State<ProductDetails> {
   Widget _imageCarousel() {
     return Stack(
       children: <Widget>[
-        Container(
-          height: 250,
-          child: Carousel(
-            boxFit: BoxFit.cover,
-            images: _images,
-            dotSize: 5.0,
-            autoplay: false,
+        Hero(
+          tag: _product.images,
+                  child: Container(
+            height: 250,
+            child: Carousel(
+              boxFit: BoxFit.cover,
+              images: _images,
+              dotSize: 5.0,
+              autoplay: false,
+            ),
           ),
         ),
         Positioned(

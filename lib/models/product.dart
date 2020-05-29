@@ -61,3 +61,9 @@ class Product extends Equatable {
   @override
   String toString() => "Product {id : $productid}";
 }
+
+class ProductCondition{
+  int id;
+  String name;
+  ProductCondition({this.id, this.name});
+}

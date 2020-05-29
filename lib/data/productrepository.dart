@@ -12,6 +12,7 @@ abstract class ProductRepository {
   Future<List<Product>> getAllProducts(int startIndex, int limit);
   Future<String> postImage(String image);
   Future<String> postProduct(Product product);
+  Future<List<Product>> getAllUserProducts(int userId);
 }
 
 class ProductService extends ProductRepository {
@@ -59,7 +60,10 @@ class ProductService extends ProductRepository {
     try {
       var encodedBody = convert.jsonEncode(product);
       print(encodedBody);
-      var response = await http.post(PostProductAPI,
+        String result = await Future<String>.delayed(Duration.zero, () {
+            return "Hello";
+              });
+      /*var response = await http.post(PostProductAPI,
           body: encodedBody,
           headers: {HttpHeaders.contentTypeHeader: "application/json"});
       if(response.statusCode == 200){
@@ -67,10 +71,34 @@ class ProductService extends ProductRepository {
         var mappedJson = convert.jsonDecode(jsonBody);
         var result = mappedJson["status"];
         return result;
-      }
+      }*/
+      return result;
     } catch (e) {
         print(e);
     }
     return null;
   }
+
+  @override
+  Future<List<Product>> getAllUserProducts(int userId) async{
+    List<Product> products = new List<Product>();
+    try{ 
+      var response = await http.get(GetUserProductAPI + "$userId");
+      if(response.statusCode == 200){
+        var jsonBody = convert.jsonDecode(response.body);
+        var jsonMap = jsonBody["products"];
+        if(jsonMap != null){
+          jsonMap.forEach((e){
+            products.add(Product.fromJson(e));
+          });
+        }
+      }
+    }catch(e){
+      debugPrint(e.toString());
+    }
+    return products;
+  }
+
+
+
 }

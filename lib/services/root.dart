@@ -31,5 +31,15 @@ class Root{
     }
   }
 
+    Future<File> localProductFile() async {
+    File file = new File(await getRootPath() + "/productData.json");
+    if (!file.existsSync()) {
+      file.createSync();
+      return file;
+    } else {
+      return file;
+    }
+  }
+
 
 }

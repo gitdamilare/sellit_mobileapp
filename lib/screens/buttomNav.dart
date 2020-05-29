@@ -7,7 +7,7 @@ import 'package:sellit_mobileapp/screens/account.dart';
 import 'package:sellit_mobileapp/screens/chat.dart';
 import 'package:sellit_mobileapp/screens/home.dart';
 import 'package:sellit_mobileapp/screens/login.dart';
-import 'package:sellit_mobileapp/screens/postproduct/postproduct.dart';
+//import 'package:sellit_mobileapp/screens/postproduct/postproduct.dart';
 import 'package:sellit_mobileapp/screens/profile.dart';
 
 class BottomNavWrapper extends StatefulWidget {
@@ -42,7 +42,7 @@ class _BottomNavWrapperState extends State<BottomNavWrapper> {
         onPageChanged: (int) {
           print("Page Changes to index $int");
         },
-        children: <Widget>[Home(), PostProduct(), Profile(), Account()],
+        children: <Widget>[Home(), Chat(), Profile(), Account()],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {

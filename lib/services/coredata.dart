@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sellit_mobileapp/models/brand.dart';
 import 'package:sellit_mobileapp/models/category.dart';
 import 'package:sellit_mobileapp/models/product.dart';
 import 'package:sellit_mobileapp/models/user.dart';
@@ -12,4 +13,12 @@ class CoreData{
   Product appProduct = Product();
 
   User userInfo = User();
+
+  List<Brand> appBrands =  List<Brand>();
+
+  List<ProductCondition> appProductCondition = [
+    ProductCondition(id: 1, name: "Very Good"),
+     ProductCondition(id: 2, name: "Good"),
+      ProductCondition(id: 3, name: "Poor")
+  ];
 }

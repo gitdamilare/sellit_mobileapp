@@ -12,14 +12,14 @@ import 'package:sellit_mobileapp/routes/routelinks.dart';
 import 'package:sellit_mobileapp/services/coredata.dart';
 import 'package:sellit_mobileapp/utilis/utili.dart';
 
-class PostProduct extends StatefulWidget {
-  PostProduct({Key key}) : super(key: key);
+class PostProductCategory extends StatefulWidget {
+  PostProductCategory({Key key}) : super(key: key);
 
   @override
-  _PostProductState createState() => _PostProductState();
+  _PostProductCategoryState createState() => _PostProductCategoryState();
 }
 
-class _PostProductState extends State<PostProduct> {
+class _PostProductCategoryState extends State<PostProductCategory> {
   List<Category> appCategories = List<Category>();
   @override
   void initState() {
@@ -139,7 +139,7 @@ class _PostProductState extends State<PostProduct> {
           return Center(
               child: Container(
                   width: MediaQuery.of(context).size.width - 50,
-                  height: MediaQuery.of(context).size.width - 250.0,
+                  height: (MediaQuery.of(context).size.height / 4) - 50 ,
                   color: Colors.white,
                   child: Column(
                     //mainAxisAlignment: MainAxisAlignment.start,

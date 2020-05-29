@@ -10,38 +10,31 @@ class UtilityWidget {
       case "electronics":
         //return circleAvatarSelector(Colors.amber, Icons.phone_iphone);
         return circleAvatarSelector(
-            Colors.grey.shade200,
-            LineAwesomeIcons.mobile_phone);
+            Colors.grey.shade200, LineAwesomeIcons.mobile_phone);
         break;
       case "furniture":
         //return circleAvatarSelector(Colors.cyan, Icons.event_seat);
         return circleAvatarSelector(
-            Colors.grey.shade200,
-            LineAwesomeIcons.chair);
+            Colors.grey.shade200, LineAwesomeIcons.chair);
         break;
       case "fashion":
         //return circleAvatarSelector(Colors.brown, LineAwesomeIcons.t_shirt);
         return circleAvatarSelector(
-            Colors.grey.shade200,
-            LineAwesomeIcons.t_shirt);
+            Colors.grey.shade200, LineAwesomeIcons.t_shirt);
         break;
       case "vehicles":
         //return circleAvatarSelector(Colors.lightBlueAccent, Icons.directions_car);
-        return circleAvatarSelector(
-            Colors.grey.shade200,
-            LineAwesomeIcons.car);
+        return circleAvatarSelector(Colors.grey.shade200, LineAwesomeIcons.car);
         break;
       case "textbook":
         // return circleAvatarSelector(Colors.redAccent, Icons.library_books);
         return circleAvatarSelector(
-            Colors.grey.shade200,
-            LineAwesomeIcons.book);
+            Colors.grey.shade200, LineAwesomeIcons.book);
         break;
       default:
         //return circleAvatarSelector(Colors.indigo, Icons.library_books);
         return circleAvatarSelector(
-           Colors.grey.shade200,
-            LineAwesomeIcons.alternate_compress_arrows);
+            Colors.grey.shade200, LineAwesomeIcons.alternate_compress_arrows);
     }
   }
 
@@ -154,7 +147,8 @@ class UtilityWidget {
         });
   }
 
-    static MaterialButton materialButton(BuildContext context, String title, {VoidCallback onPress}) {
+  static MaterialButton materialButton(BuildContext context, String title,
+      {VoidCallback onPress}) {
     return MaterialButton(
       height: 50.0,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(1.0)),
@@ -171,21 +165,57 @@ class UtilityWidget {
     );
   }
 
-    static MaterialColor white = const MaterialColor(
-      0xFFFFFFFF,
-      const <int, Color>{
-        50: const Color(0xFFFFFFFF),
-        100: const Color(0xFFFFFFFF),
-        200: const Color(0xFFFFFFFF),
-        300: const Color(0xFFFFFFFF),
-        400: const Color(0xFFFFFFFF),
-        500: const Color(0xFFFFFFFF),
-        600: const Color(0xFFFFFFFF),
-        700: const Color(0xFFFFFFFF),
-        800: const Color(0xFFFFFFFF),
-        900: const Color(0xFFFFFFFF),
-      },
+  static MaterialColor white = const MaterialColor(
+    0xFFFFFFFF,
+    const <int, Color>{
+      50: const Color(0xFFFFFFFF),
+      100: const Color(0xFFFFFFFF),
+      200: const Color(0xFFFFFFFF),
+      300: const Color(0xFFFFFFFF),
+      400: const Color(0xFFFFFFFF),
+      500: const Color(0xFFFFFFFF),
+      600: const Color(0xFFFFFFFF),
+      700: const Color(0xFFFFFFFF),
+      800: const Color(0xFFFFFFFF),
+      900: const Color(0xFFFFFFFF),
+    },
+  );
+
+  static Text getProductStatusText(int status) {
+    /* 'Approved': 1,'Sold': 2,'Under_Review': 3,"Inactive": 4,"Deleted" : 5*/
+    switch (status) {
+      case 1:
+        return _productStatusText("Approved", Color(0xFF48AC98));
+      case 2:
+        return _productStatusText("Sold", Color(0xFF48AC98));
+      case 3:
+        return _productStatusText("Pending", Colors.amber);
+      case 4:
+        return _productStatusText("Inactive", Colors.redAccent);
+    }
+  }
+
+  static Text _productStatusText(String text, Color textColor) {
+    return Text(
+      text,
+      style: TextStyle(
+          fontFamily: 'Montserrat',
+          fontWeight: FontWeight.w400,
+          fontSize: 14.0,
+          color: textColor),
     );
+  }
+
+  static String getSearchText(String text) {
+    /* 'Approved': 1,'Sold': 2,'Under_Review': 3,"Inactive": 4,"Deleted" : 5*/
+    var result = ""; 
+    text = text.toLowerCase();
+    if(text == "vehicle") result = "Car";
+    if(text == "mobile phone") result = "Phone";
+    if(text == "computer") result = "Phone";
+
+    return result;
+  }
 }
 
 /*
