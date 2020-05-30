@@ -42,7 +42,9 @@ class _ProfileState extends State<Profile> {
         } else if (state is UserProductLoaded) {
           _userProduct = state.productResult;
           if (state.productResult.isEmpty) {
-            return Container(height: 10,);
+            return Container(
+              height: 10,
+            );
           } else {
             //var _text = _getApprovedProduct(_userProduct);
             return SafeArea(
@@ -152,10 +154,10 @@ class _ProfileState extends State<Profile> {
       alignment: WrapAlignment.spaceBetween,
       direction: Axis.horizontal,
       children: <Widget>[
-        counterWidget("Approved", _getStatusCount(_userProduct,1)),
-        counterWidget("Sold", _getStatusCount(_userProduct,2)),
-        counterWidget("Pending ", _getStatusCount(_userProduct,3)),
-        counterWidget("Inactive", _getStatusCount(_userProduct,4)),
+        counterWidget("Approved", _getStatusCount(_userProduct, 1)),
+        counterWidget("Sold", _getStatusCount(_userProduct, 2)),
+        counterWidget("Pending ", _getStatusCount(_userProduct, 3)),
+        counterWidget("Inactive", _getStatusCount(_userProduct, 4)),
       ],
     );
   }
@@ -187,8 +189,8 @@ class _ProfileState extends State<Profile> {
     return StaggeredGridView.countBuilder(
       crossAxisCount: 4,
       itemCount: _userProduct.length,
-      itemBuilder: (BuildContext context, int index) =>      
-         _getProductCard(false, false, context,_userProduct[index]),
+      itemBuilder: (BuildContext context, int index) =>
+          _getProductCard(false, false, context, _userProduct[index]),
       staggeredTileBuilder: (int index) => new StaggeredTile.fit(2),
       mainAxisSpacing: 4.0,
       crossAxisSpacing: 4.0,
@@ -196,17 +198,12 @@ class _ProfileState extends State<Profile> {
   }
 
   Widget _getProductCard(
-    bool added,
-    bool isFavorite,
-    context,
-    Product product
-  ) {
+      bool added, bool isFavorite, context, Product product) {
     return InkWell(
-            onTap: () {
-              Navigator.pushNamed(context, ProductDetailsRoute,
-                  arguments: product);
-            },
-          child: Padding(
+      onTap: () {
+        Navigator.pushNamed(context, ProductDetailsRoute, arguments: product);
+      },
+      child: Padding(
         padding:
             EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0, bottom: 10.0),
         child: Container(
@@ -233,7 +230,9 @@ class _ProfileState extends State<Profile> {
                             topLeft: Radius.circular(10.0),
                             topRight: Radius.circular(10.0)),
                         image: DecorationImage(
-                            image: product.images.isEmpty ? NetworkImage(NoImageURL) : NetworkImage(product.images.first.url),
+                            image: product.images.isEmpty
+                                ? NetworkImage(NoImageURL)
+                                : NetworkImage(product.images.first.url),
                             fit: BoxFit.cover)),
                   ),
                   /*Padding(
@@ -247,7 +246,7 @@ class _ProfileState extends State<Profile> {
                 ],
               ),
               SizedBox(height: 5.0),
-                            Padding(
+              Padding(
                 padding: const EdgeInsets.only(left: 8.0),
                 child: Text(
                   product.name,
@@ -275,14 +274,13 @@ class _ProfileState extends State<Profile> {
     );
   }
 
-  String _getStatusCount(List<Product> input, int status){
+  String _getStatusCount(List<Product> input, int status) {
     int result = 0;
     input.forEach((f) {
-      if(f.status == status){
+      if (f.status == status) {
         result += 1;
       }
     });
     return result.toString();
   }
-
 }

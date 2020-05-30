@@ -4,7 +4,7 @@ import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:sellit_mobileapp/bloc/bloc.dart';
 import 'package:sellit_mobileapp/routes/routelinks.dart';
 import 'package:sellit_mobileapp/screens/account.dart';
-import 'package:sellit_mobileapp/screens/chat.dart';
+import 'package:sellit_mobileapp/screens/chatscreen.dart';
 import 'package:sellit_mobileapp/screens/home.dart';
 import 'package:sellit_mobileapp/screens/login.dart';
 //import 'package:sellit_mobileapp/screens/postproduct/postproduct.dart';
@@ -42,7 +42,7 @@ class _BottomNavWrapperState extends State<BottomNavWrapper> {
         onPageChanged: (int) {
           print("Page Changes to index $int");
         },
-        children: <Widget>[Home(), Chat(), Profile(), Account()],
+        children: <Widget>[Home(), ChatScreen(), Profile(), Account()],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {

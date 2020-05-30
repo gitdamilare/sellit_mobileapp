@@ -9,3 +9,7 @@ const String ImgBBAPI = "https://api.imgbb.com/1/upload?key=5c4df642ef55dee4580c
 const String GetUserProductAPI = "http://3.134.103.215:3000/api/v1/product/userproduct/";
 
 const String NoImageURL = "https://i.ibb.co/hf3PMhC/images-q-tbn-ANd9-Gc-R5-If-So0-Xbdh-DWe-ZIu-Kog-Rz-O7jv-Kyo-JQkvgjm-Jd-A7-MRz5z1-OEp-usqp-CAU.png";
+
+const String GetChatContactAPI = "http://3.134.103.215:3000/api/v1/chat/";
+const String GetMessagesAPI = "http://3.134.103.215:3000/api/v1/chat/getAllMessages";
+const String PostMessageAPI = "http://3.134.103.215:3000/api/v1/chat/sendMessage";

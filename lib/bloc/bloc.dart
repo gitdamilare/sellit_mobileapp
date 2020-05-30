@@ -16,3 +16,6 @@ export 'search_state.dart';
 export 'userproduct_bloc.dart';
 export 'userproduct_event.dart';
 export 'userproduct_state.dart';
+export 'chat_bloc.dart';
+export 'chat_event.dart';
+export 'chat_state.dart';

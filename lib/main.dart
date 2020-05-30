@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:path/path.dart';
 import 'package:sellit_mobileapp/bloc/bloc.dart';
 import 'package:sellit_mobileapp/data/categoryrepository.dart';
+import 'package:sellit_mobileapp/data/chatrepository.dart';
 import 'package:sellit_mobileapp/data/productrepository.dart';
 import 'package:sellit_mobileapp/data/searchrepository.dart';
 import 'package:sellit_mobileapp/data/userrepository.dart';
@@ -42,6 +43,7 @@ void main() {
   final productRepository = ProductService();
   final categoryRepository = CategoryService();
   final searchRepository = SearchService();
+  final chatRepository = ChatService();
 
   runApp(MultiBlocProvider(
     providers: [
@@ -58,9 +60,16 @@ void main() {
       BlocProvider<SearchBloc>(create: (context) {
         return SearchBloc(searchRepository: searchRepository);
       }),
-      BlocProvider<UserproductBloc>(create: (context){
-        return UserproductBloc(productRepository: productRepository);
-      },)
+      BlocProvider<UserproductBloc>(
+        create: (context) {
+          return UserproductBloc(productRepository: productRepository);
+        },
+      ),
+      BlocProvider<ChatBloc>(
+        create: (context) {
+          return ChatBloc(chatRepository: chatRepository);
+        },
+      ),
     ],
     child: MyApp(
       userRepository: userRepository,
@@ -73,8 +82,9 @@ class MyApp extends StatelessWidget {
   MyApp({Key key, @required this.userRepository}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(statusBarColor: UtilityWidget.white, systemNavigationBarColor: Color(0xFF48AC98)));
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+        statusBarColor: UtilityWidget.white,
+        systemNavigationBarColor: Color(0xFF48AC98)));
     return MaterialApp(
         title: 'Flutter Demo',
         debugShowCheckedModeBanner: false,

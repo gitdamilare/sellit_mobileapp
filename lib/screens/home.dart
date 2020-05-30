@@ -57,7 +57,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
         resizeToAvoidBottomInset: true,
         resizeToAvoidBottomPadding: true,
         appBar: AppBar(
-          elevation: 5.0,
+          elevation: 0.0,
           backgroundColor: Theme.of(context).canvasColor,
           automaticallyImplyLeading: false,
           title: Theme(
