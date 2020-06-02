@@ -15,9 +15,9 @@ Some of the design used in this application was modelled from Olx and N26 mobile
      <td>Post a Product 1st Page</td>
   </tr>
   <tr>
-    <td><img width="250" alt="portfolio_view" src="https://github.com/gitdamilare/sellit_mobileapp/blob/master/ReadMeImages/image1.jpg"></td>
-    <td><img width="250" alt="portfolio_view" src="https://github.com/gitdamilare/sellit_mobileapp/blob/master/ReadMeImages/image2.jpg"></td>
-       <td><img width="250" alt="portfolio_view" src="https://github.com/gitdamilare/sellit_mobileapp/blob/master/ReadMeImages/image3.jpg"></td>
-          <td><img width="250" alt="portfolio_view" src="https://github.com/gitdamilare/sellit_mobileapp/blob/master/ReadMeImages/image7.jpg"></td>
+    <td valign="top"><img width="250" alt="portfolio_view" src="https://github.com/gitdamilare/sellit_mobileapp/blob/master/ReadMeImages/image1.jpg"></td>
+    <td valign="top"><img width="250" alt="portfolio_view" src="https://github.com/gitdamilare/sellit_mobileapp/blob/master/ReadMeImages/image2.jpg"></td>
+       <td valign="top"><img width="250" alt="portfolio_view" src="https://github.com/gitdamilare/sellit_mobileapp/blob/master/ReadMeImages/image3.jpg"></td>
+          <td valign="top"><img width="250" alt="portfolio_view" src="https://github.com/gitdamilare/sellit_mobileapp/blob/master/ReadMeImages/image7.jpg"></td>
   </tr>
  </table>
