@@ -86,6 +86,7 @@ class _LoginFormState extends State<LoginForm> {
           password: _passwordController.text);
       BlocProvider.of<LoginBloc>(context)
           .add(LoginButtonPressed(authInput: input));
+
     }
 
     return BlocListener<LoginBloc, LoginState>(listener: (context, state) {

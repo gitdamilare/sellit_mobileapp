@@ -10,3 +10,4 @@ const String PostFormRoute = "/postform";
 const String PostFormNextRoute = "/postformnext";
 const String TestRoute = "/test";
 const String PostImageRoute = "/postimage";
+const String ChatMessagesRoute = "/chatmessages";

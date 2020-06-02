@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sellit_mobileapp/bloc/bloc.dart';
 import 'package:sellit_mobileapp/models/user.dart';
 import 'package:sellit_mobileapp/services/coredata.dart';
 import 'package:sellit_mobileapp/services/jsonrepo.dart';
@@ -107,7 +109,8 @@ class _AccountState extends State<Account> {
                     children: <Widget>[
                       Text(
                         "ADDRESS",
-                        style:  TextStyle(fontWeight: FontWeight.bold, fontSize: 13.0),
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 13.0),
                       ),
                       SizedBox(
                         height: 5.0,
@@ -137,7 +140,8 @@ class _AccountState extends State<Account> {
                     children: <Widget>[
                       Text(
                         "PHONE NO",
-                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13.0),
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 13.0),
                       ),
                       SizedBox(
                         height: 5.0,
@@ -188,7 +192,11 @@ class _AccountState extends State<Account> {
         _manageListTile(
             title: "Help & Support",
             subtile: "Get support if you have any problem",
-            icon: Icons.help)
+            icon: Icons.help),
+        _manageListTile(
+            title: "Sign Out",
+            subtile: "Sign Out From the Account",
+            icon: Icons.signal_wifi_off)
       ],
     );
   }
@@ -201,6 +209,7 @@ class _AccountState extends State<Account> {
       ),
       title: Text(title),
       subtitle: Text(subtile),
+      onTap: () {title == "Sign Out" ? BlocProvider.of<AuthenticationBloc>(context).add(LoggedOut()) : null; } 
     );
   }
 }

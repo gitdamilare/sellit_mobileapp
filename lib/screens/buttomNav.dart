@@ -103,9 +103,9 @@ class _BottomNavWrapperState extends State<BottomNavWrapper> {
                         child: InkWell(
                           onTap: () {
                             setState(() {
-                              BlocProvider.of<AuthenticationBloc>(context)
-                                  .add(LoggedOut());
-                              //_myPage.jumpToPage(1);
+                              /*BlocProvider.of<AuthenticationBloc>(context)
+                                  .add(LoggedOut());*/
+                              _myPage.jumpToPage(1);
                             });
                           },
                           child: Column(

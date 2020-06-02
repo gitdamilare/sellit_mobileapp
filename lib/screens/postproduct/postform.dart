@@ -163,7 +163,7 @@ class _PostFormState extends State<PostForm> {
                 TextFormField(
                   autofocus: true,
                   controller: _descriptionController,
-                  maxLines: 2,
+                  maxLines: 4,
                   decoration: InputDecoration(
                     hintText: "",
                     focusedBorder: UnderlineInputBorder(

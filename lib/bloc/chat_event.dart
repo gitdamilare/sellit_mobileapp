@@ -28,3 +28,18 @@ class FetchChatMessages extends ChatEvent{
     @override
   String toString() => 'ChatOutputDto { sender_id: ${chatOutputDto.senderid},receiver_id: ${chatOutputDto.receiverid} }';
 }
+
+class SendMessage extends ChatEvent{
+    final ChatOutputDto chatOutputDto;
+  SendMessage({this.chatOutputDto});
+  @override
+  // TODO: implement props
+  List<Object> get props => [chatOutputDto];
+
+    @override
+  String toString() => 'Send Message ChatOutputDto { sender_id: ${chatOutputDto.senderid},receiver_id: ${chatOutputDto.receiverid} }';
+}
+
+
+
+

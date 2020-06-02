@@ -69,13 +69,13 @@ class _ProfileState extends State<Profile> {
                   alignment: Alignment.topLeft,
                   child: Padding(
                     padding: const EdgeInsets.only(top: 20.0),
-                    child: IconButton(
+                    child: Container()/*IconButton(
                       icon: Icon(Icons.arrow_back),
                       color: Colors.grey.shade300,
                       onPressed: () {
                         // Navigator.of(context).pop();
                       },
-                    ),
+                    ),*/
                   ),
                 ),
                 Positioned(

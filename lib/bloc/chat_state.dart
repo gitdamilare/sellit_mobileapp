@@ -30,3 +30,12 @@ class MessagesLoaded extends ChatState{
   final List<Chat> chatMessages;
   MessagesLoaded({this.chatMessages});
 }
+
+class MessageError extends ChatState{ 
+}
+
+class SendingMessage extends ChatState{}
+
+class SentMessage extends ChatState{
+}
+

@@ -115,13 +115,11 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
               return Center(
                 child: CircularProgressIndicator(),
               );
-            }
-            if (state is ProductError) {
+            } else if (state is ProductError) {
               return Center(
                 child: Text('failed to fetch posts'),
               );
-            }
-            if (state is ProductLoaded) {
+            } else if (state is ProductLoaded) {
               if (state.products.isEmpty || state.categories.isEmpty) {
                 return RefreshIndicator(
                   key: _refreshIndicatorKeyPost,
@@ -171,6 +169,14 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                       ],
                     )
                   ],
+                ),
+              );
+            } else {
+              return RefreshIndicator(
+                key: _refreshIndicatorKeyPost,
+                onRefresh: _refreshProduct,
+                child: Center(
+                  child: Text("no posts"),
                 ),
               );
             }
@@ -411,7 +417,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                   style: TextStyle(
                       fontFamily: 'Montserrat',
                       fontSize: 15.0,
-                      fontWeight: FontWeight.w500),
+                      fontWeight: FontWeight.w500,
+                      letterSpacing: 0.55),
                 ),
               ),
               Expanded(
@@ -441,11 +448,11 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     //VisionText visionText = await recognizeText.processImage(ourImage);
     final List<ImageLabel> labels = await labeler.processImage(ourImage);
     if (labels.isNotEmpty) result = labels.first.text;
-    
+
     setState(() {
       searchQuery = result;
       searchQuery = UtilityWidget.getSearchText(searchQuery);
-      if(Platform.isIOS) searchQuery = "Phone";
+      if (Platform.isIOS) searchQuery = "Phone";
       _searchBloc.add(SearchProduct(productname: searchQuery));
       showModal();
     });

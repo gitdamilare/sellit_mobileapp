@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:multi_image_picker/multi_image_picker.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:sellit_mobileapp/data/productrepository.dart';
 import 'package:sellit_mobileapp/models/product.dart';
 import 'package:sellit_mobileapp/routes/routelinks.dart';
@@ -141,7 +142,7 @@ class _PostFormNextState extends State<PostFormNext> {
                 TextFormField(
                     autofocus: true,
                     controller: _moreDetailController,
-                    maxLines: 2,
+                    maxLines: 3,
                     decoration: InputDecoration(
                       hintText: "",
                       focusedBorder: UnderlineInputBorder(
@@ -186,7 +187,8 @@ class _PostFormNextState extends State<PostFormNext> {
           productRepository.postProduct(_productToPost).then((v) async {
             if (v.isNotEmpty) {
               print(v);
-              await Future<Null>.delayed(Duration(seconds: 5), () {
+               _sucessMessage(AlertType.success, "Your Product has Successfully been Received. Please Wait For Approval");
+             /* await Future<Null>.delayed(Duration(seconds: 5), () {
                 _scaffoldPostProductKey.currentState.removeCurrentSnackBar();
                 _scaffoldPostProductKey.currentState.showSnackBar(
                   SnackBar(
@@ -198,12 +200,12 @@ class _PostFormNextState extends State<PostFormNext> {
                   ),
                 );
                 print("vvvvvvvvvvvvvvvvvvvvvvvvvv");
-              });
+              });*/
 
               //print("vvvvvvvvvvvvvvvvvvvvvvvvvv");
-               Navigator.of(context).pushNamed(
-                ExploreRoute,
-              );
+             
+            }else{
+              _sucessMessage(AlertType.error, "An Error Occured, Please Try Again!!");
             }
           });
         }
@@ -243,5 +245,26 @@ class _PostFormNextState extends State<PostFormNext> {
             );
           }),
     );
+  }
+
+  _sucessMessage(AlertType input, String desc) {
+    return Alert(
+      context: context,
+      type: input,
+      title: "Post Status",
+      desc: desc,
+      buttons: [
+        DialogButton(
+          child: Text(
+            "Okay",
+            style: TextStyle(color: Colors.white, fontSize: 16),
+          ),
+          onPressed: () => Navigator.of(context).pushNamed(
+            ExploreRoute,
+          ),
+          width: 120,
+        )
+      ],
+    ).show();
   }
 }

@@ -60,10 +60,10 @@ class ProductService extends ProductRepository {
     try {
       var encodedBody = convert.jsonEncode(product);
       print(encodedBody);
-        String result = await Future<String>.delayed(Duration.zero, () {
+        /*String result = await Future<String>.delayed(Duration.zero, () {
             return "Hello";
-              });
-      /*var response = await http.post(PostProductAPI,
+              });*/
+      var response = await http.post(PostProductAPI,
           body: encodedBody,
           headers: {HttpHeaders.contentTypeHeader: "application/json"});
       if(response.statusCode == 200){
@@ -71,8 +71,7 @@ class ProductService extends ProductRepository {
         var mappedJson = convert.jsonDecode(jsonBody);
         var result = mappedJson["status"];
         return result;
-      }*/
-      return result;
+      }
     } catch (e) {
         print(e);
     }

@@ -44,9 +44,10 @@ class ChatService extends ChatRepository {
     try {
       var encodedBody = convert.jsonEncode(input);
       print(encodedBody);
-      var response = await http.post(PostProductAPI,
+      var response = await http.post(GetMessagesAPI,
           body: encodedBody,
-          headers: {HttpHeaders.contentTypeHeader: "application/json"});
+          headers: {HttpHeaders.contentTypeHeader: "application/json"}
+          );
       if(response.statusCode == 200){
         var jsonBody = convert.jsonDecode(response.body);
         var jsonMap = jsonBody["rows"];

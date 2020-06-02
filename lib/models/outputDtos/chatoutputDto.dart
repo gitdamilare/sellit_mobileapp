@@ -4,9 +4,9 @@ part 'chatoutputDto.g.dart';
 @JsonSerializable(explicitToJson: true)
 class ChatOutputDto {
   String message;
-  String productid;
-  String senderid;
-  String receiverid;
+  int productid;
+  int senderid;
+  int receiverid;
 
   ChatOutputDto({this.message, this.productid, this.senderid, this.receiverid});
   ChatOutputDto.fromMessage({this.senderid, this.receiverid});
@@ -15,4 +15,10 @@ class ChatOutputDto {
       _$ChatOutputDtoFromJson(json);
 
   Map<String, dynamic> toJson() => _$ChatOutputDtoToJson(this);
+}
+
+class ChatMessagerDto{
+  String name;
+  int receiverid;
+    ChatMessagerDto({this.name, this.receiverid});
 }
