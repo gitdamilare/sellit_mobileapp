@@ -10,9 +10,9 @@ Some of the design used in this application was modelled from Olx and N26 mobile
 <table>
   <tr>
     <td>Landing Screen Page</td>
-     <td>Holiday Mention</td>
-     <td>Present day in purple and selected day in pink</td>
-     <td>Present day in purple and selected day in pink</td>
+     <td>Chat Screen Page</td>
+     <td>Posted Product Page</td>
+     <td>Post a Product 1st Page</td>
   </tr>
   <tr>
     <td><img width="250" alt="portfolio_view" src="https://github.com/gitdamilare/sellit_mobileapp/blob/master/ReadMeImages/image1.jpg"></td>
