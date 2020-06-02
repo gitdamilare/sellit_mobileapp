@@ -2,7 +2,7 @@
  This mobile application is an individual project for a course (Global Software Development) I took during my Master's program. The aplication was built on the Flutter framework powered by Dart and the backend api was written in NodeJs.
 
 ## Excutive Summary of the Application (Educational Purpose)
-| [Document](https://docs.google.com/document/d/11pKeHCEFNEo_TIwEz3EjIrHNZ2mUv9N7jiiGhmZo47s/edit?usp=sharing) | ---- |
+| [Document](https://docs.google.com/document/d/11pKeHCEFNEo_TIwEz3EjIrHNZ2mUv9N7jiiGhmZo47s/edit?usp=sharing) | ---- |---- |
 | Today, online stores are one of the most accepted forms of buying and selling products. Sellit is a reliable, student-centric, peer-2-peer online store, designed to provide a platform for students at Hochschule Fulda to buy/sell goods in a hassle-free manner.  Although there is a great deal of these stores available on the internet, they do not specifically cater to local users. Our main objective is to provide students within the city of Fulda with the convenience of finding everything they need in one place |
 
 ## Getting Started 
