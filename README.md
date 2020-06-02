@@ -6,3 +6,5 @@
 
 The some of the design used in this application was modelled from Olx and N26 mobile application. 
 
+![](ReadMeImages/image1.jpg) ![](ReadMeImages/image2.jpg) ![](ReadMeImages/image3.jpg)
+
