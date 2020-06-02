@@ -86,6 +86,7 @@ class _LoginFormState extends State<LoginForm> {
           password: _passwordController.text);
       BlocProvider.of<LoginBloc>(context)
           .add(LoginButtonPressed(authInput: input));
+
     }
 
     return BlocListener<LoginBloc, LoginState>(listener: (context, state) {
@@ -107,7 +108,7 @@ class _LoginFormState extends State<LoginForm> {
                   padding: EdgeInsets.only(top: 20.0),
                   child: Image.asset("assets/images/image_05.png"),
                 ),
-                Expanded(
+                Expanded(                 
                   child: Container(),
                 ),
                 Image.asset("assets/images/image_02.png")
@@ -138,7 +139,7 @@ class _LoginFormState extends State<LoginForm> {
                     ),
                     Container(
                       width: double.infinity,
-                      height: ScreenUtil.getInstance().setHeight(600),
+                      height: ScreenUtil.getInstance().setHeight(620),
                       decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(8.0),
@@ -156,6 +157,7 @@ class _LoginFormState extends State<LoginForm> {
                         padding:
                             EdgeInsets.only(left: 16.0, right: 16.0, top: 16.0),
                         child: Column(
+
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Text("Login",
@@ -172,9 +174,9 @@ class _LoginFormState extends State<LoginForm> {
                                     fontFamily: "Poppins-Medium",
                                     fontSize:
                                         ScreenUtil.getInstance().setSp(26))),
-                            TextField(
+                            TextField(                             
                               controller: _usernameController,
-                              decoration: InputDecoration(
+                              decoration: InputDecoration(                             
                                   hintText: "username",
                                   hintStyle: TextStyle(
                                       color: Colors.grey, fontSize: 12.0)),
@@ -182,7 +184,7 @@ class _LoginFormState extends State<LoginForm> {
                             SizedBox(
                               height: ScreenUtil.getInstance().setHeight(30),
                             ),
-                            Text("PassWord",
+                            Text("Password",
                                 style: TextStyle(
                                     fontFamily: "Poppins-Medium",
                                     fontSize:

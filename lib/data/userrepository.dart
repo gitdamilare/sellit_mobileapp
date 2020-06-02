@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:sellit_mobileapp/models/inputDtos/auth.dart';
 import 'package:sellit_mobileapp/models/outputDtos/authoutputDto.dart';
+import 'package:sellit_mobileapp/services/coredata.dart';
 import 'package:sellit_mobileapp/services/jsonrepo.dart';
 import 'package:sellit_mobileapp/services/root.dart';
 import 'package:sellit_mobileapp/utilis/urlLinks.dart';
@@ -34,7 +35,9 @@ final storage = new FlutterSecureStorage();
         var jsonBody = response.body;
         var output = convert.jsonDecode(jsonBody);
         result = AuthOutputDto.fromJson(output);
-        
+
+        //Save the Logged User Info
+       // await JsonRepo.jsonRepoObject.writeAccountDataToJson(result);
      }
     } catch (e) {
       debugPrint(e);
@@ -64,7 +67,9 @@ final storage = new FlutterSecureStorage();
     await storage.write(key: "token", value: input.token);
     Root.rootObject.rootPath = await Root.rootObject.getRootPath();
     Root.rootObject.localPath = await Root.rootObject.localFile();
-    Root.rootObject.localPath =
-        await JsonRepo.jsonRepoObject.writeAccountDataToJson(input);
+    Root.rootObject.localPath = await JsonRepo.jsonRepoObject.writeAccountDataToJson(input);
+    
+    //Save Data For First Login
+    CoreData.coreDataObject.userInfo = input.userinfo;
   }
 }

@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:sellit_mobileapp/data/userrepository.dart';
+import 'package:sellit_mobileapp/services/coredata.dart';
+import 'package:sellit_mobileapp/services/jsonrepo.dart';
 import './bloc.dart';
 
 class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> {
@@ -17,6 +19,10 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
     if(event is AppStarted){
       bool hasToken = await userRepository.hasToken();
       if(hasToken){
+              //Once the App is Opened , Fetch Save User Record
+      var userData = await JsonRepo.jsonRepoObject.getDatafromJsonFile();
+      if(userData != null)
+      CoreData.coreDataObject.userInfo = userData.userinfo; //Store it into a singleton variable
         yield AuthenticationAuthenticated();
       }else{
         yield AuthenticationUnauthenticated();

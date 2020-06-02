@@ -7,19 +7,19 @@ part 'product.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class Product extends Equatable {
-  final int productid;
-  final String name;
-  final String slug;
-  final String description;
-  final String price;
-  final int sellerid;
-  final String moredetails;
-  final int status;
-  final int categoryid;
-  final int brandid;
-  final int productcondition;
-  final List<Image> images;
-  final User sellerinfo;
+  int productid;
+  String name;
+  String slug;
+  String description;
+  String price;
+  int sellerid;
+  String moredetails;
+  int status;
+  int categoryid;
+  int brandid;
+  int productcondition;
+  List<Image> images;
+  User sellerinfo;
 
   Product(
       {this.productid,
@@ -60,4 +60,10 @@ class Product extends Equatable {
 
   @override
   String toString() => "Product {id : $productid}";
+}
+
+class ProductCondition{
+  int id;
+  String name;
+  ProductCondition({this.id, this.name});
 }
