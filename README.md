@@ -35,12 +35,15 @@ Some of the design used in this application was modelled from Olx and N26 mobile
      <td>Chat Screen Page</td>
      <td>Posted Product Page</td>
      <td>Post a Product 1st Page</td>
+     <td>Search Product with an Image</td>
   </tr>
   <tr>
     <td valign="top"><img width="250" alt="portfolio_view" src="https://github.com/gitdamilare/sellit_mobileapp/blob/master/ReadMeImages/image1.jpg"></td>
     <td valign="top"><img width="250" alt="portfolio_view" src="https://github.com/gitdamilare/sellit_mobileapp/blob/master/ReadMeImages/image2.jpg"></td>
        <td valign="top"><img width="250" alt="portfolio_view" src="https://github.com/gitdamilare/sellit_mobileapp/blob/master/ReadMeImages/image3.jpg"></td>
           <td valign="top"><img width="250" alt="portfolio_view" src="https://github.com/gitdamilare/sellit_mobileapp/blob/master/ReadMeImages/image7.jpg"></td>
+             <td valign="top"><img width="250" alt="portfolio_view" src="https://github.com/gitdamilare/sellit_mobileapp/blob/master/ReadMeImages/Screenshot_2020-06-02-14-26-36-356_com.example.sellit_mobileapp%5B1%5D.jpg"></td>
+   
   </tr>
  </table>
  
