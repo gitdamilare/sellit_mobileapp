@@ -43,3 +43,6 @@ Some of the design used in this application was modelled from Olx and N26 mobile
           <td valign="top"><img width="250" alt="portfolio_view" src="https://github.com/gitdamilare/sellit_mobileapp/blob/master/ReadMeImages/image7.jpg"></td>
   </tr>
  </table>
+ 
+ ## BackEnd API Documentation
+[Swgger UI](http://3.134.103.215:3000/api/v1/api-docs/)
