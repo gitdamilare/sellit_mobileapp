@@ -45,4 +45,4 @@ Some of the design used in this application was modelled from Olx and N26 mobile
  </table>
  
  ## BackEnd API Documentation
-[Swgger UI](http://3.134.103.215:3000/api/v1/api-docs/)
+[Swager UI](http://3.134.103.215:3000/api/v1/api-docs/)
