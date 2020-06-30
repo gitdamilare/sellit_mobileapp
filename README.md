@@ -46,6 +46,16 @@ Some of the design used in this application was modelled from Olx and N26 mobile
              <td valign="top"><img width="250" alt="portfolio_view" src="https://github.com/gitdamilare/sellit_mobileapp/blob/master/ReadMeImages/Screenshot_2020-06-02-14-26-36-356_com.example.sellit_mobileapp%5B1%5D.jpg"></td>
    
   </tr>
+    <tr>
+    <td>Select Category</td>
+     <td>Post a Product</td>
+     <td>Profile Page</td>
+  </tr>
+  <tr>
+    <td valign="top"><img width="250" alt="portfolio_view" src="https://github.com/gitdamilare/sellit_mobileapp/blob/master/ReadMeImages/category.jpg"></td>
+    <td valign="top"><img width="250" alt="portfolio_view" src="https://github.com/gitdamilare/sellit_mobileapp/blob/master/ReadMeImages/image8.jpg"></td>
+       <td valign="top"><img width="250" alt="portfolio_view" src="https://github.com/gitdamilare/sellit_mobileapp/blob/master/ReadMeImages/image4.jpg"></td>  
+  </tr>
  </table>
  
  ## BackEnd API Documentation
