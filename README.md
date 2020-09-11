@@ -1,5 +1,5 @@
 # SellIT Mobileapp 
- This mobile application is an individual project for a course (Global Software Development) I took during my Master's program. The aplication was built on the Flutter framework powered by Dart and the backend api was written in NodeJs.
+ This mobile application is an individual project for a course (Global Software Development) I took during my Master's program. The aplication was built on the Flutter framework powered by Dart and the backend api was written in NodeJs. State Management - BLoC Pattern
 
 ## Excutive Summary of the Application
 [Document](https://docs.google.com/document/d/11pKeHCEFNEo_TIwEz3EjIrHNZ2mUv9N7jiiGhmZo47s/edit?usp=sharing) </br>
