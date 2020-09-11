@@ -28,7 +28,7 @@ if you are still facing some issues check the following command and resolve the 
 flutter doctor
 ```
 
-# Some UI Screens of the Application (Educational Purpose)
+# Some UI Screens of the Application
 Some of the design used in this application was modelled from Olx and N26 mobile application. 
 <table>
   <tr>
